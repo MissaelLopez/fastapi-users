@@ -9,7 +9,7 @@ DB_PASSWORD = "64cb184329cfe6ce7f6c9df6b19a5667e3955fa73dfa4ae181bd0c0d328ee838"
 
 """ engine = create_engine(f"{DB_CONNECTION}+pg8000://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}") """
 
-engine = create_engine("postgresql://mkiatgybkpqblr:64cb184329cfe6ce7f6c9df6b19a5667e3955fa73dfa4ae181bd0c0d328ee838@ec2-54-158-247-97.compute-1.amazonaws.com:5432/d6gnk3ar4pba3p")
+engine = create_engine("postgresql+pg8000://mkiatgybkpqblr:64cb184329cfe6ce7f6c9df6b19a5667e3955fa73dfa4ae181bd0c0d328ee838@ec2-54-158-247-97.compute-1.amazonaws.com:5432/d6gnk3ar4pba3p")
 
 meta = MetaData()
 

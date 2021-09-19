@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine, MetaData, engine
 
-DB_CONNECTION = "postgresql"
-DB_HOST = "ec2-54-158-247-97.compute-1.amazonaws.com"
-DB_NAME = "d6gnk3ar4pba3p"
-DB_PORT = "5432"
-DB_USER = "mkiatgybkpqblr"
-DB_PASSWORD = "64cb184329cfe6ce7f6c9df6b19a5667e3955fa73dfa4ae181bd0c0d328ee838"
+DB_CONNECTION = "db_connection"
+DB_HOST = "db_host"
+DB_NAME = "db_name"
+DB_PORT = "db_port"
+DB_USER = "db_user"
+DB_PASSWORD = "db_password"
 
 engine = create_engine(
     f"{DB_CONNECTION}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")

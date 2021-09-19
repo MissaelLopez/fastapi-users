@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css"
+      integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd"
+      crossorigin="anonymous"
+    />
+    <title>Update User</title>
+  </head>
+  <body>
+    <h1 class="text-center my-3 display-4">Actualizar Usuario</h1>
+    <div class="container">
+      <div class="form-group">
+        <label for="product-name" class="form-label mt-4">Usuario</label>
+        <input
+          type="text"
+          name="user-name"
+          id="user-name"
+          class="form-control"
+          value="{{user['name']}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="user-email" class="form-label mt-4">Email</label>
+        <input
+          type="email"
+          name="user-email"
+          id="user-email"
+          class="form-control"
+          value="{{user['email']}}"
+        />
+      </div>
+      <br />
+      <div class="text-center">
+        <input
+          class="btn btn-success"
+          type="submit"
+          value="Actualizar"
+          onclick="saveUser(`{{user['id']}}`, `{{user['password']}}`)"
+        />
+      </div>
+    </div>
+    <script>
+      async function saveUser(id, password) {
+        const name = document.getElementById("user-name");
+        const email = document.getElementById("user-email");
+        const obj = {
+          name: name.value,
+          email: email.value,
+          password: password
+        };
+        try {
+          const res = await fetch(`/users/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(obj),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          window.location.href = "/";
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css"
+      integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Users</title>
+  </head>
+  <body>
+    <h1 class="text-center my-3 display-4">Usuarios</h1>
+    <div class="container my-5">
+        <div class="text-right mb-3">
+            <a href="/new-user""><i class="fas fa-2x fa-plus-circle"></i></a>
+        </div>
+      <table class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr class="table">
+            <th scope="row">{{ user["name"] }}</th>
+            <td>{{ user["email"] }}</td>
+            <td>
+              <a href="/users/{{user['id']}}">
+                <button class="btn btn-outline-info">Actualizar</button>    
+              </a>
+              <button class="btn btn-outline-danger" onclick="deleteUser(`{{user['id']}}`)">Eliminar</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script>
+        async function updateUser(id) {
+            console.log(id);
+        }
+
+        async function deleteUser(id) {
+            try {
+                const res = await fetch(`users/${id}`, {
+                    method: "DELETE",
+                });
+                window.location.href = "/";
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+  </body>
+</html>
